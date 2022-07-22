@@ -14,5 +14,7 @@ router.get('/', function(req, res, next) {
 });
 router.post('/signup',AuthController.signup);
 router.post('/login',AuthController.userLogin);
+router.post("/forget-password", AuthController.ForgetPassword);
+router.get("/reset-password", AuthController.ResetPassword);
 //admin login signup
 module.exports = router;
