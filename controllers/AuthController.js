@@ -309,10 +309,45 @@ const ResetPassword = async function (req, res) {
   }
 };
 
+// update profile  method
+const updateProfile = async function (req, res) {
+  console.log("body:", req.body);
+  const profile = await userServices.checkprofile(req.body._id);
+  console.log(req.body._id);
+  try {
+    if (profile) {
+      profile.name = req.body.name || profile.name;
+      profile.mobile = req.body.mobile || profile.mobile;
+      profile.images = req.body.images || profile.images;
+      profile.type = req.body.type || profile.type;
+      if (req.body.password) {
+        UserInfo.password = req.body.password;
+      }
+      const userUpdateprofile = await profile.save();
+      res.json({
+        _id: userUpdateprofile._id,
+        name: userUpdateprofile.name,
+        mobile: userUpdateprofile.mobile,
+        images: userUpdateprofile.images,
+      });
+      res.status(200).send({
+        status: true,
+        message: "User update",
+        data: userUpdateprofile,
+      });
+    } else {
+      res.status(200).send({ status: true, message: "user not found" });
+    }
+  } catch (e) {
+    res.status(400).send({ status: false, message: e.message });
+  }
+};
+
 module.exports = {
   upload,
   userLogin,
   signup,
   ResetPassword,
   ForgetPassword,
+  updateProfile,
 };

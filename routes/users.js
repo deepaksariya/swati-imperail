@@ -16,5 +16,8 @@ router.post('/signup',AuthController.signup);
 router.post('/login',AuthController.userLogin);
 router.post("/forget-password", AuthController.ForgetPassword);
 router.get("/reset-password", AuthController.ResetPassword);
+// router.patch("/UpdateProfiles", AuthController.updateProfile);
+// router.post("/UpdateProfiles", AuthController.updateProfile)
+router.patch("/UpdateProfiles", AuthController.updateProfile);
 //admin login signup
 module.exports = router;
