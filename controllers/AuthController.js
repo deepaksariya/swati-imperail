@@ -329,6 +329,7 @@ const updateProfile = async function (req, res) {
         name: userUpdateprofile.name,
         mobile: userUpdateprofile.mobile,
         images: userUpdateprofile.images,
+        type: userUpdateprofile.type,
       });
       res.status(200).send({
         status: true,
